@@ -1,0 +1,24 @@
+{
+  "name": "ppt-generator",
+  "version": "1.0.0",
+  "description": "基于pptxgenjs的PowerPoint演示文稿生成器",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "example": "ts-node examples/quick-start.ts",
+    "generate": "ts-node examples/quick-start.ts"
+  },
+  "keywords": ["ppt", "powerpoint", "pptxgenjs", "typescript", "presentation"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}
