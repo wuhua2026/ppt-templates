@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+venv/
+env/
+.venv/
+.env
+
+# Node.js
+node_modules/
+dist/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+._*
+
+# Generated output
+python/output/
+output_*.pptx
+output/
+*.tmp
+
+# Preview images (regenerate via scripts)
+preview/*.png
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test output
+tests/output/
