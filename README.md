@@ -1,3 +1,4 @@
+[![CI](https://github.com/wuhua2026/ppt-templates/actions/workflows/ci.yml/badge.svg)](https://github.com/wuhua2026/ppt-templates/actions/workflows/ci.yml)
 # PPT模板资源库
 
 > 现代PPT模板合集，包含动画模板和静态模板，支持Python和JavaScript编程生成。
