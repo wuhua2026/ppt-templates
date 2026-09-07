@@ -48,3 +48,22 @@ preview/*.png
 
 # Test output
 tests/output/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.venv/
+venv/
+
+# Node
+node_modules/
+js/dist/
+npm-debug.log*
