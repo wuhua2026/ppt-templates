@@ -26,6 +26,9 @@
 # 安装依赖
 pip install -r requirements.txt
 
+# 可选：以可编辑模式安装，之后可在任意位置 import
+pip install -e .
+
 # 运行快速示例
 python examples/quick_start.py
 
@@ -39,7 +42,7 @@ python examples/batch_generate.py
 ### 方式三：JavaScript 生成
 
 ```bash
-cd js && npm install && npx tsx examples/quick-start.ts
+cd js && npm install && npm run example
 ```
 
 ## 模板分类
@@ -240,7 +243,7 @@ PPT项目/
 
 ## 环境要求
 
-- Python 3.8+（Python端）
+- Python 3.10+（Python端，CI 覆盖 3.10 / 3.11 / 3.12）
 - Node.js 18+（JavaScript端）
 - 系统需安装 Microsoft YaHei（微软雅黑）字体以获得最佳显示效果
 
