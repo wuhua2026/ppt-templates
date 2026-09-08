@@ -3,6 +3,17 @@
 本文件记录项目的显著变更。格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [未发布]
+
+### 新增
+
+- **分支保护**：`main` 要求 CI 通过（Python 3.12 / TypeScript / 双端一致性）后才能合并
+- **仓库治理文件**：Issue 模板（缺陷报告 / 功能建议）与 PR 模板
+
+### 变更
+
+- `examples/batch_generate.py` 改为委托 `scripts/generate_all.py`，消除两份重复的生成逻辑
+
 ## [1.0.0] - 2026-09-08
 
 首个正式版本。
