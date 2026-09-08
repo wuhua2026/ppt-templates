@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ppt-templates"
-version = "1.0.0"
+version = "1.1.0"
 description = "230 个预构建 PPT 模板与双语言生成器（Python / TypeScript）"
 readme = "README.md"
 requires-python = ">=3.10"
