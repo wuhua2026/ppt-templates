@@ -103,7 +103,7 @@ from python.generators_complete import (
     TechnologyThemeAssembler,
 )
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 __all__ = [
     # 基础
