@@ -1,5 +1,5 @@
 {
-  "name": "ppt-generator",
+  "name": "@wuhua2026/ppt-templates",
   "version": "1.0.0",
   "description": "基于pptxgenjs的PowerPoint演示文稿生成器",
   "main": "dist/index.js",
@@ -10,7 +10,13 @@
     "example": "ts-node examples/quick-start.ts",
     "generate": "ts-node examples/quick-start.ts"
   },
-  "keywords": ["ppt", "powerpoint", "pptxgenjs", "typescript", "presentation"],
+  "keywords": [
+    "ppt",
+    "powerpoint",
+    "pptxgenjs",
+    "typescript",
+    "presentation"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -20,5 +26,8 @@
     "@types/node": "^20.0.0",
     "typescript": "^5.0.0",
     "ts-node": "^10.9.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
