@@ -1,6 +1,9 @@
 /**
  * 主题模块
  * 预定义7种PPT主题配色方案
+ *
+ * 色值与 Python 侧 themes/*.py 逐项对齐（由 scripts/check_parity.py 校验）。
+ * 修改任一侧时必须同步另一侧，否则 CI 会失败。
  */
 
 import { Theme } from '../base';
@@ -8,85 +11,85 @@ import { Theme } from '../base';
 /** 蓝色科技主题 - 适合科技、互联网行业 */
 export const blueTechnology: Theme = {
   name: '蓝色科技',
-  primary: '2B579A',
-  secondary: '4472C4',
+  primary: '0066CC',
+  secondary: '00CC99',
   accent: '00B4D8',
-  background: 'F0F4F8',
-  text: '1A1A2E',
-  muted: '7B8794',
-  darkBg: '0D1B2A',
+  background: 'FFFFFF',
+  text: '212121',
+  muted: '9E9E9E',
+  darkBg: '0A1931',
 };
 
 /** 紫色渐变主题 - 适合创意、设计类 */
 export const purpleGradient: Theme = {
   name: '紫色渐变',
-  primary: '6C3483',
-  secondary: '9B59B6',
-  accent: 'E74C3C',
-  background: 'F5F0FF',
-  text: '2C003E',
-  muted: '8E7BA5',
-  darkBg: '1A0025',
+  primary: '7B2FBE',
+  secondary: 'E040FB',
+  accent: 'A882FF',
+  background: 'FFFFFF',
+  text: '212121',
+  muted: '9E9E9E',
+  darkBg: '1E0F32',
 };
 
-/** 暗金主题 - 适合高端、奢华品牌 */
+/** 暗金奢华主题 - 适合高端、商务；唯一使用深色背景的主题 */
 export const darkGold: Theme = {
-  name: '暗金',
+  name: '暗金奢华',
   primary: 'C9A96E',
-  secondary: 'D4AF37',
-  accent: 'F39C12',
-  background: '1C1C1C',
-  text: 'F5F5DC',
-  muted: 'A0936E',
-  darkBg: '0D0D0D',
+  secondary: 'B48C50',
+  accent: 'FFD700',
+  background: '1A1A2E',
+  text: 'F0F0F0',
+  muted: 'A0A0A0',
+  darkBg: '0F0F1E',
 };
 
-/** 极简黑白主题 - 适合正式商务场合 */
+/** 极简黑白主题 - 适合通用、学术 */
 export const minimalistBW: Theme = {
   name: '极简黑白',
-  primary: '333333',
-  secondary: '666666',
-  accent: 'E74C3C',
+  primary: '000000',
+  secondary: '333333',
+  accent: 'C8C8C8',
   background: 'FFFFFF',
-  text: '1A1A1A',
-  muted: 'AAAAAA',
+  text: '000000',
+  muted: '808080',
   darkBg: '000000',
 };
 
-/** 海洋蓝主题 - 适合环保、海洋相关 */
+/** 海洋蓝主题 - 适合教育、培训 */
 export const oceanBlue: Theme = {
   name: '海洋蓝',
   primary: '0077B6',
-  secondary: '0096C7',
-  accent: 'FFB703',
-  background: 'F0F8FF',
-  text: '023047',
-  muted: '5E81AC',
-  darkBg: '001D3D',
+  secondary: '00B4D8',
+  accent: '90E0EF',
+  background: 'FFFFFF',
+  text: '212121',
+  muted: '9E9E9E',
+  darkBg: '081E34',
 };
 
-/** 绿色自然主题 - 适合农业、环保、健康 */
+/** 自然绿主题 - 适合环保、健康 */
 export const greenNature: Theme = {
-  name: '绿色自然',
+  name: '自然绿',
   primary: '2D6A4F',
-  secondary: '40916C',
-  accent: 'D4A373',
-  background: 'F0FFF4',
-  text: '1B4332',
-  muted: '74A57F',
-  darkBg: '081C15',
+  secondary: '52B788',
+  accent: 'A8DAB5',
+  background: 'FFFFFF',
+  text: '212121',
+  muted: '9E9E9E',
+  darkBg: '0F281E',
 };
 
-/** 红色商务主题 - 适合金融、企业宣传 */
+/** 红色商务主题 - 适合商务、营销 */
 export const redBusiness: Theme = {
   name: '红色商务',
   primary: 'C0392B',
   secondary: 'E74C3C',
-  accent: 'F39C12',
-  background: 'FFF5F5',
-  text: '2C0000',
-  muted: 'A04040',
-  darkBg: '1A0000',
+  accent: 'FF6B6B',
+  background: 'FFFFFF',
+  text: '212121',
+  muted: '9E9E9E',
+  darkBg: '320A0A',
 };
 
 /** 所有主题集合 */
