@@ -46,6 +46,7 @@ from python.generators_directory.circular_ring import CircularRingGenerator
 from python.generators_directory.hexagon import HexagonGenerator
 from python.generators_directory.sidebar import SidebarGenerator
 from python.generators_directory.card_grid import CardGridGenerator
+from python.generators_directory.timeline_style import TimelineStyleGenerator
 
 # 时间轴生成器
 from python.generators_timeline.horizontal import HorizontalTimeline
@@ -93,6 +94,87 @@ from python.generators_ending.contact import ContactPageGenerator
 #   - use_items: 是否需要设置目录/列表数据
 #   - use_events: 是否需要设置时间轴事件数据
 #   - use_members: 是否需要设置团队成员数据
+
+# ------------------------------------------------------------------ #
+# 图表与内容页的示例数据
+#
+# 注意：各生成器的数据字段契约互不相同，不能像目录/时间轴那样共用一份
+# DEFAULT_*。缺少示例数据时，图表页只会画出标题、内容页甚至一张幻灯片
+# 都不会生成，因此每个模板条目都必须自带 sample。
+# ------------------------------------------------------------------ #
+
+# 柱状图 / 动画柱状图：list[dict{label, value}]，color 留空以使用内置调色板
+DEFAULT_CHART_BAR_DATA = [
+    {"label": "Q1", "value": 120},
+    {"label": "Q2", "value": 168},
+    {"label": "Q3", "value": 205},
+    {"label": "Q4", "value": 182},
+    {"label": "Q5", "value": 246},
+    {"label": "Q6", "value": 298},
+]
+
+# 饼图：list[dict{label, value}]
+DEFAULT_CHART_PIE_DATA = [
+    {"label": "华东", "value": 38},
+    {"label": "华南", "value": 24},
+    {"label": "华北", "value": 19},
+    {"label": "西南", "value": 11},
+    {"label": "其他", "value": 8},
+]
+
+# 折线图：series 为 list[dict{name, data:list[float]}]，data 是数值列表
+DEFAULT_CHART_LINE_SERIES = [
+    {"name": "2025", "data": [120.0, 150.0, 135.0, 200.0, 180.0, 220.0]},
+    {"name": "2026", "data": [150.0, 178.0, 165.0, 236.0, 214.0, 268.0]},
+]
+DEFAULT_CHART_LINE_LABELS = ["1月", "3月", "5月", "7月", "9月", "11月"]
+
+# 图文排版：list[dict{title, description}]，每项一页
+DEFAULT_CONTENT_TEXT_IMAGE = [
+    {"title": "项目背景", "description": "业务规模持续扩大，原有的人工制作方式已无法满足交付节奏，需要一套可复用、可参数化的演示文稿生成方案。"},
+    {"title": "核心方案", "description": "以主题系统与生成器族解耦内容与样式，一份数据可同时驱动 Python 与 TypeScript 两端渲染。"},
+]
+
+# 三栏布局：list[dict{icon_text, title, description}]，最多 3 项
+DEFAULT_CONTENT_THREE_COLUMN = [
+    {"icon_text": "01", "title": "高效协同", "description": "统一的主题与版式规范，跨团队协作时无需反复对齐视觉细节。"},
+    {"icon_text": "02", "title": "数据驱动", "description": "图表页由数据直接生成，数值变更后重新生成即可同步更新。"},
+    {"icon_text": "03", "title": "持续演进", "description": "新增生成器只需登记进注册表，批量脚本与目录结构自动适配。"},
+]
+
+# 四宫格布局：list[dict{number, title, description}]，最多 4 项
+DEFAULT_CONTENT_FOUR_GRID = [
+    {"number": "01", "title": "市场分析", "description": "行业规模、增速与竞争格局的系统性梳理。"},
+    {"number": "02", "title": "产品设计", "description": "核心功能定义、用户路径与交互原型。"},
+    {"number": "03", "title": "技术方案", "description": "架构分层、关键选型与性能预算。"},
+    {"number": "04", "title": "运营计划", "description": "渠道策略、节奏安排与效果度量。"},
+]
+
+# 全图叠加：list[dict{title, subtitle, description}]，每项一页
+DEFAULT_CONTENT_FULL_IMAGE = [
+    {"title": "品牌主张", "subtitle": "Brand Vision", "description": "让每一次表达都保持一致的质感与专业度。"},
+    {"title": "产品理念", "subtitle": "Product Philosophy", "description": "把重复劳动交给脚本，把创造力留给内容本身。"},
+]
+
+# 时间轴目录：list[dict{number, title, subtitle}]，subtitle 缺失时卡片只显示标题
+DEFAULT_TIMELINE_DIR_ITEMS = [
+    {"number": "01", "title": "项目启动", "subtitle": "需求调研与范围确认"},
+    {"number": "02", "title": "方案设计", "subtitle": "架构选型与原型评审"},
+    {"number": "03", "title": "开发实施", "subtitle": "模块开发与联调"},
+    {"number": "04", "title": "测试验收", "subtitle": "功能测试与性能压测"},
+    {"number": "05", "title": "上线交付", "subtitle": "灰度发布与文档交付"},
+]
+
+# 对比布局：list[dict{left_title, left_items, right_title, right_items}]，每项一页
+DEFAULT_CONTENT_COMPARISON = [
+    {
+        "left_title": "传统方式",
+        "left_items": ["依赖人工排版，耗时且易出错", "多套文档风格难以统一", "复用需要复制粘贴再修改"],
+        "right_title": "本方案",
+        "right_items": ["脚本批量生成，分钟级交付", "七套主题保证视觉一致", "改参数即可整批重生成"],
+    },
+]
+
 
 TEMPLATE_REGISTRY = [
     # ========== 动画封面 ==========
@@ -219,6 +301,15 @@ TEMPLATE_REGISTRY = [
         "title": "内容概览",
         "use_items": True,
     },
+    {
+        "class": TimelineStyleGenerator,
+        "name": "timeline_style",
+        "label": "时间轴目录",
+        "category": "static",
+        "type": "directory",
+        "title": "实施日程",
+        "sample": DEFAULT_TIMELINE_DIR_ITEMS,
+    },
 
     # ========== 时间轴 ==========
     {
@@ -266,6 +357,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "chart",
         "title": "数据分析",
+        "sample": DEFAULT_CHART_BAR_DATA,
     },
     {
         "class": PieChart,
@@ -274,6 +366,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "chart",
         "title": "占比分析",
+        "sample": DEFAULT_CHART_PIE_DATA,
     },
     {
         "class": LineChart,
@@ -282,6 +375,8 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "chart",
         "title": "趋势分析",
+        # LineChart 的 set_data 需要 (series, x_labels) 两个位置参数
+        "sample": (DEFAULT_CHART_LINE_SERIES, DEFAULT_CHART_LINE_LABELS),
     },
     {
         "class": AnimatedBarChart,
@@ -290,6 +385,7 @@ TEMPLATE_REGISTRY = [
         "category": "animated",
         "type": "chart",
         "title": "数据展示",
+        "sample": DEFAULT_CHART_BAR_DATA,
     },
 
     # ========== 内容页 ==========
@@ -300,6 +396,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "content",
         "title": "内容展示",
+        "sample": DEFAULT_CONTENT_TEXT_IMAGE,
     },
     {
         "class": ThreeColumnGenerator,
@@ -308,6 +405,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "content",
         "title": "三大优势",
+        "sample": DEFAULT_CONTENT_THREE_COLUMN,
     },
     {
         "class": FourGridGenerator,
@@ -316,6 +414,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "content",
         "title": "核心要点",
+        "sample": DEFAULT_CONTENT_FOUR_GRID,
     },
     {
         "class": FullImageOverlayGenerator,
@@ -324,6 +423,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "content",
         "title": "全图展示",
+        "sample": DEFAULT_CONTENT_FULL_IMAGE,
     },
     {
         "class": ComparisonGenerator,
@@ -332,6 +432,7 @@ TEMPLATE_REGISTRY = [
         "category": "static",
         "type": "content",
         "title": "方案对比",
+        "sample": DEFAULT_CONTENT_COMPARISON,
     },
 
     # ========== 团队介绍 ==========
@@ -422,7 +523,6 @@ DEFAULT_TEAM_MEMBERS = [
     {"name": "刘伟", "title": "CMO 首席营销官"},
 ]
 
-
 # ============================================================
 # 核心生成逻辑
 # ============================================================
@@ -498,6 +598,17 @@ def generate_template(template_info, theme, base_dir):
         if template_info.get("use_members"):
             if hasattr(gen, "set_members"):
                 gen.set_members(DEFAULT_TEAM_MEMBERS)
+
+        # 设置示例数据：优先 set_items，其次 set_data。
+        # sample 为元组时表示 set_data 需要多个位置参数（如 LineChart 的 series + x_labels）。
+        if "sample" in template_info:
+            sample = template_info["sample"]
+            if hasattr(gen, "set_items"):
+                gen.set_items(sample)
+            elif isinstance(sample, tuple):
+                gen.set_data(*sample)
+            else:
+                gen.set_data(sample)
 
         # 生成
         gen.generate()

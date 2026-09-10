@@ -67,6 +67,8 @@ class BusinessPlanAssembler(TemplateGenerator):
         return self
 
     def _get_color(self, key):
+        if isinstance(self._theme, dict):
+            return hex_to_rgb(self._theme.get(key, self._theme["primary"]))
         return hex_to_rgb(getattr(self._theme, key, self._theme.primary))
 
     # ------------------------------------------------------------------ #

@@ -72,3 +72,29 @@ jobs:
 
       - name: Check Python / TypeScript generator parity
         run: python scripts/check_parity.py
+
+  # 防止空壳模板再次混入仓库：任何 0 页或首页只有标题的 .pptx 都会让本 job 失败。
+  # 修复前的仓库在此处会报出 63 个失败（21 个零页 + 42 个仅标题）。
+  templates:
+    name: 产物自检
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 校验全部模板含实质内容
+        run: python scripts/verify_templates.py templates
+
+      - name: 校验 6 套完整演示文稿
+        run: python scripts/verify_templates.py templates/complete
